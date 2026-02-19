@@ -118,12 +118,16 @@ footer{
 </header>
 
 <div class="intro">
-  <h2>About SHREE Mangoes</h2>
+  <h2>Welcome to SHREE Mangoes</h2>
   <p>
-    <b>SHREE Mangoes™</b> is a registered trademark mango retail business based near Devanahalli.
-    We source premium quality mangoes directly from trusted farmers and suppliers,
-    ensuring natural ripening, freshness, and reliable customer satisfaction.
-    We supply both retail and bulk mango orders with honesty and consistent quality.
+    <strong>SHREE Mangoes™</strong> is a farm-based mango business committed to delivering
+    fresh, naturally ripened mangoes directly from our orchards to your home.
+    We follow traditional farming practices and avoid chemical ripening,
+    ensuring pure taste, rich aroma, and superior quality.<br><br>
+
+    Located near Devanahalli, we specialize in seasonal Indian mango varieties.
+    From premium table mangoes to traditional local favorites, we serve both
+    retail and bulk orders with honesty, freshness, and care.
   </p>
 </div>
 
@@ -141,9 +145,6 @@ footer{
 </footer>
 
 <script>
-/* ========= EASY PRODUCT EDIT AREA =========
-   Change stock:true/false to control availability
-*/
 const mangoes = [
   {id:1,name:"Amarapali",price:120,img:"amrapali.jpg",stock:true},
   {id:2,name:"Sindhura",price:100,img:"sindhura.jpg",stock:true},
@@ -155,10 +156,9 @@ const mangoes = [
   {id:8,name:"Neelam",price:100,img:"neelam.jpg",stock:true},
   {id:9,name:"Alphonso",price:220,img:"alphonso.jpg",stock:true},
   {id:10,name:"Kesar",price:200,img:"kesar.jpg",stock:true},
-  {id:11,name:"Nati",price:80,img:"nati.jpg",stock:false}
+  {id:11,name:"Nati",price:80,img:"nati.jpg",stock:true}
 ];
 
-/* ========= RENDER PRODUCTS ========= */
 const productsDiv = document.getElementById("products");
 
 mangoes.forEach(m=>{
@@ -185,7 +185,6 @@ mangoes.forEach(m=>{
   `;
 });
 
-/* ========= CART SYSTEM ========= */
 let cartData = [];
 
 function addToCart(id){
@@ -195,7 +194,7 @@ function addToCart(id){
   const existing = cartData.find(item=>item.id===id);
 
   if(existing){
-    existing.qty += qty; // merge duplicate
+    existing.qty += qty;
   }else{
     cartData.push({id:id,name:mango.name,price:mango.price,qty:qty});
   }
@@ -232,7 +231,6 @@ function renderCart(){
   totalSpan.innerText = total;
 }
 
-/* ========= WHATSAPP ORDER ========= */
 function orderWhatsApp(){
   if(cartData.length===0){
     alert("Cart is empty");
@@ -261,4 +259,3 @@ function orderWhatsApp(){
 
 </body>
 </html>
-
