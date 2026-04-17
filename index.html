@@ -5,11 +5,12 @@
 <title>SHREE Mangoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ FINAL FAVICON (ICO - PERMANENT FIX) -->
-<link rel="icon" href="/favicon.ico">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/favicon.png">
+<!-- ✅ FINAL FAVICON (PNG ONLY - CLEAN FIX) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=12345">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=12345">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=12345">
 
+<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -185,14 +186,12 @@ footer{
   <p>Farm Fresh • Naturally Ripened</p>
   <p>📍 Near Devanahalli Dmart – 562110</p>
   <p>📞 +91 79966 44345 | +91 87926 67976</p>
-  <p><b>Charan Kumar T</b> | <b>Charan Yadav D</b></p>
 </header>
 
 <div class="intro">
   <h2>About SHREE Mangoes</h2>
   <p>
-    SHREE Mangoes is a retail mango business based near Devanahalli.
-    We provide fresh, naturally ripened mangoes sourced directly from farmers.
+    Fresh, naturally ripened mangoes sourced directly from farmers.
   </p>
 </div>
 
@@ -205,28 +204,28 @@ footer{
   <button onclick="orderWhatsApp()">Order on WhatsApp</button>
 </div>
 
-<!-- WhatsApp Floating Button -->
+<!-- WhatsApp Button -->
 <a href="https://wa.me/917996644345?text=Hello%20SHREE%20Mangoes,%20I%20want%20to%20order%20mangoes" target="_blank" class="whatsapp-float">
 💬
 </a>
 
 <footer>
-© 2026 SHREE Mangoes™ | Contact: 79966 44345 / 87926 67976
+© 2026 SHREE Mangoes™
 </footer>
 
 <script>
 const mangoes = [
-  {id:1,name:"Amarapali",price:120,img:"amrapali.jpg",stock:true},
-  {id:2,name:"Sindhura",price:100,img:"sindhura.jpg",stock:true},
-  {id:3,name:"Raspuri",price:90,img:"raspuri.jpg",stock:true},
-  {id:4,name:"Malgova",price:140,img:"malgova.jpg",stock:true},
-  {id:5,name:"Banganapalli",price:110,img:"banganapalli.jpg",stock:true},
-  {id:6,name:"Imam Pasand",price:180,img:"imampasand.jpg",stock:true},
-  {id:7,name:"Mallika",price:130,img:"mallika.jpg",stock:true},
-  {id:8,name:"Neelam",price:100,img:"neelam.jpg",stock:true},
-  {id:9,name:"Alphonso",price:220,img:"alphonso.jpg",stock:true},
-  {id:10,name:"Kesar",price:200,img:"kesar.jpg",stock:true},
-  {id:11,name:"Nati",price:80,img:"nati.jpg",stock:true}
+  {id:1,name:"Amarapali",price:120,img:"amrapali.jpg"},
+  {id:2,name:"Sindhura",price:100,img:"sindhura.jpg"},
+  {id:3,name:"Raspuri",price:90,img:"raspuri.jpg"},
+  {id:4,name:"Malgova",price:140,img:"malgova.jpg"},
+  {id:5,name:"Banganapalli",price:110,img:"banganapalli.jpg"},
+  {id:6,name:"Imam Pasand",price:180,img:"imampasand.jpg"},
+  {id:7,name:"Mallika",price:130,img:"mallika.jpg"},
+  {id:8,name:"Neelam",price:100,img:"neelam.jpg"},
+  {id:9,name:"Alphonso",price:220,img:"alphonso.jpg"},
+  {id:10,name:"Kesar",price:200,img:"kesar.jpg"},
+  {id:11,name:"Nati",price:80,img:"nati.jpg"}
 ];
 
 const productsDiv = document.getElementById("products");
@@ -237,74 +236,21 @@ mangoes.forEach(m=>{
       <img src="images/${m.img}">
       <h3>${m.name}</h3>
       <p class="price">₹${m.price} / kg</p>
-      <label>Quantity (kg):</label><br>
-      <select id="qty${m.id}">
-        <option value="1">1 kg</option>
-        <option value="2">2 kg</option>
-        <option value="3">3 kg</option>
-        <option value="5">5 kg</option>
-      </select><br>
       <button onclick="addToCart(${m.id})">Add to Cart</button>
     </div>
   `;
 });
 
-let cartData = [];
+let total = 0;
 
 function addToCart(id){
   const mango = mangoes.find(m=>m.id===id);
-  const qty = parseInt(document.getElementById("qty"+id).value);
-
-  const existing = cartData.find(item=>item.id===id);
-
-  if(existing){
-    existing.qty += qty;
-  }else{
-    cartData.push({id:id,name:mango.name,price:mango.price,qty:qty});
-  }
-
-  renderCart();
-}
-
-function removeItem(id){
-  cartData = cartData.filter(item=>item.id!==id);
-  renderCart();
-}
-
-function renderCart(){
-  const cartItems = document.getElementById("cartItems");
-  const totalSpan = document.getElementById("total");
-  cartItems.innerHTML = "";
-
-  let total = 0;
-
-  cartData.forEach(item=>{
-    const amount = item.price * item.qty;
-    total += amount;
-
-    cartItems.innerHTML += `
-      <li>
-        ${item.name} – ${item.qty} kg – ₹${amount}
-        <button class="removeBtn" onclick="removeItem(${item.id})">Remove</button>
-      </li>
-    `;
-  });
-
-  totalSpan.innerText = total;
+  total += mango.price;
+  document.getElementById("total").innerText = total;
 }
 
 function orderWhatsApp(){
-  if(cartData.length===0){
-    alert("Cart is empty");
-    return;
-  }
-
-  let message = "Hello SHREE Mangoes,%0A%0AI would like to order:%0A";
-  cartData.forEach((item,i)=>{
-    message += `${i+1}. ${item.name} - ${item.qty}kg%0A`;
-  });
-
-  window.open("https://wa.me/917996644345?text="+message,"_blank");
+  window.open("https://wa.me/917996644345","_blank");
 }
 </script>
 
