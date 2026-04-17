@@ -5,78 +5,116 @@
 <title>SHREE Mangoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ FINAL FAVICON (CACHE FORCE VERSION) -->
-<link rel="icon" type="image/png" href="/favicon.png?v=999">
-<link rel="shortcut icon" href="/favicon.png?v=999">
-<link rel="apple-touch-icon" href="/favicon.png?v=999">
+<!-- ✅ FINAL FAVICON (ICO - PERMANENT FIX) -->
+<link rel="icon" href="/favicon.ico">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#fff8e1;
+  font-family:'Poppins', sans-serif;
+  background:linear-gradient(to bottom, #fff8e1, #fff3c4);
 }
 
+/* HEADER */
 header{
-  background:#f9a825;
+  background:linear-gradient(135deg, #f9a825, #ffb300);
   color:white;
   text-align:center;
-  padding:25px;
+  padding:40px 20px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
 }
 
 header img{
-  height:140px;
-  width:140px;
+  height:120px;
+  width:120px;
   border-radius:50%;
   object-fit:cover;
   background:white;
-  padding:5px;
+  padding:6px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
 
+header h1{
+  font-size:32px;
+  font-weight:600;
+  margin-top:10px;
+}
+
+header p{
+  opacity:0.95;
+  font-size:14px;
+}
+
+/* INTRO */
 .intro{
   padding:30px;
   text-align:center;
-  background:#fffde7;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(8px);
 }
 
+/* PRODUCTS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:20px;
-  padding:30px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  padding:40px 30px;
 }
 
+/* CARD */
 .card{
   background:white;
-  border-radius:10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.15);
-  padding:15px;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
+  padding:18px;
   text-align:center;
+  transition:all 0.3s ease;
+  border:1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
 }
 
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
-  border-radius:8px;
+  border-radius:10px;
 }
 
+/* PRICE */
 .price{
   font-weight:bold;
-  color:#c62828;
+  color:#d32f2f;
+  font-size:18px;
 }
 
+/* BUTTON */
 select, button{
-  margin-top:8px;
-  padding:6px;
+  margin-top:10px;
+  padding:8px;
+  border-radius:6px;
 }
 
 button{
-  background:#2e7d32;
+  background:linear-gradient(135deg, #2e7d32, #4caf50);
   color:white;
   border:none;
-  border-radius:5px;
+  border-radius:8px;
+  padding:10px;
+  font-weight:600;
   cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
 }
 
 button:disabled{
@@ -84,29 +122,57 @@ button:disabled{
   cursor:not-allowed;
 }
 
+/* REMOVE BUTTON */
 .removeBtn{
-  background:#c62828;
+  background:#d32f2f;
   margin-left:10px;
 }
 
+/* OUT OF STOCK */
 .out{
-  color:#c62828;
+  color:#d32f2f;
   font-weight:bold;
 }
 
+/* CART */
 .cart{
-  background:#ffffff;
+  background:rgba(255,255,255,0.95);
   padding:20px;
-  margin:20px;
-  border-radius:10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  margin:30px;
+  border-radius:15px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
 }
 
+/* FOOTER */
 footer{
-  background:#333;
+  background:#222;
   color:white;
   text-align:center;
-  padding:15px;
+  padding:20px;
+  font-size:14px;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  font-size:24px;
+  width:55px;
+  height:55px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  z-index:1000;
+}
+
+.whatsapp-float:hover{
+  background:#1ebe5d;
 }
 </style>
 </head>
@@ -119,15 +185,14 @@ footer{
   <p>Farm Fresh • Naturally Ripened</p>
   <p>📍 Near Devanahalli Dmart – 562110</p>
   <p>📞 +91 79966 44345 | +91 87926 67976</p>
-  <p><b>Charan Kumar T</b> &nbsp; | &nbsp; <b>Charan Yadav D</b></p>
+  <p><b>Charan Kumar T</b> | <b>Charan Yadav D</b></p>
 </header>
 
 <div class="intro">
   <h2>About SHREE Mangoes</h2>
   <p>
     SHREE Mangoes is a retail mango business based near Devanahalli.
-    We source high-quality mangoes from trusted farmers and suppliers.
-    Our focus is on freshness, natural ripening, and delivering the best quality mangoes to our customers.
+    We provide fresh, naturally ripened mangoes sourced directly from farmers.
   </p>
 </div>
 
@@ -140,9 +205,13 @@ footer{
   <button onclick="orderWhatsApp()">Order on WhatsApp</button>
 </div>
 
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/917996644345?text=Hello%20SHREE%20Mangoes,%20I%20want%20to%20order%20mangoes" target="_blank" class="whatsapp-float">
+💬
+</a>
+
 <footer>
-© 2026 SHREE Mangoes™ | Contact: 79966 44345 / 87926 67976<br>
-SHREE Mangoes™ is a registered trademark. Unauthorized use of the brand name, logo, or product identity is prohibited. We operate as a farm-direct mango supplier committed to natural ripening and premium quality produce.
+© 2026 SHREE Mangoes™ | Contact: 79966 44345 / 87926 67976
 </footer>
 
 <script>
@@ -168,9 +237,6 @@ mangoes.forEach(m=>{
       <img src="images/${m.img}">
       <h3>${m.name}</h3>
       <p class="price">₹${m.price} / kg</p>
-
-      ${m.stock ? "" : "<p class='out'>Out of Stock</p>"}
-
       <label>Quantity (kg):</label><br>
       <select id="qty${m.id}">
         <option value="1">1 kg</option>
@@ -178,10 +244,7 @@ mangoes.forEach(m=>{
         <option value="3">3 kg</option>
         <option value="5">5 kg</option>
       </select><br>
-
-      <button ${m.stock ? "" : "disabled"} onclick="addToCart(${m.id})">
-        Add to Cart
-      </button>
+      <button onclick="addToCart(${m.id})">Add to Cart</button>
     </div>
   `;
 });
@@ -222,9 +285,7 @@ function renderCart(){
     cartItems.innerHTML += `
       <li>
         ${item.name} – ${item.qty} kg – ₹${amount}
-        <button class="removeBtn" onclick="removeItem(${item.id})">
-          Remove
-        </button>
+        <button class="removeBtn" onclick="removeItem(${item.id})">Remove</button>
       </li>
     `;
   });
@@ -238,21 +299,10 @@ function orderWhatsApp(){
     return;
   }
 
-  let message =
-    "Hello SHREE Mangoes,%0A%0A" +
-    "I would like to place an order:%0A%0A";
-
-  let total = 0;
-
+  let message = "Hello SHREE Mangoes,%0A%0AI would like to order:%0A";
   cartData.forEach((item,i)=>{
-    const amt = item.price * item.qty;
-    total += amt;
-    message += `${i+1}. ${item.name} – ${item.qty} kg – ₹${amt}%0A`;
+    message += `${i+1}. ${item.name} - ${item.qty}kg%0A`;
   });
-
-  message +=
-    `%0ATotal Amount: ₹${total}%0A%0A` +
-    "Customer Details:%0AName:%0AAddress:%0APhone:%0A%0AThank you.";
 
   window.open("https://wa.me/917996644345?text="+message,"_blank");
 }
