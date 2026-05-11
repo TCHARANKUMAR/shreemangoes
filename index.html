@@ -5,7 +5,6 @@
 <title>SHREE Mangoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ FAVICON ADDED (ONLY CHANGE) -->
 <link rel="icon" type="image/x-icon" href="/favicon.png">
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
 
@@ -101,7 +100,6 @@ button:disabled{
   box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* ✅ NEW DELIVERY INFO SECTION ADDED */
 .delivery-info{
   background:#fffde7;
   margin:20px;
@@ -150,12 +148,15 @@ footer{
 
 <div class="cart">
   <h2>Your Cart</h2>
+  <p><b>Minimum Order: 5 kg required to place order</b></p>
   <ul id="cartItems"></ul>
   <p><b>Total: ₹<span id="total">0</span></b></p>
-  <button onclick="orderWhatsApp()">Order on WhatsApp</button>
+  <p><b>Total Quantity: <span id="totalKg">0</span> kg</b></p>
+  <button id="orderBtn" onclick="orderWhatsApp()" disabled>
+    Order on WhatsApp
+  </button>
 </div>
 
-<!-- ✅ ONLY REQUESTED CONTENT ADDED -->
 <div class="delivery-info">
   <h3>Freshness & Delivery Information</h3>
   <p>
@@ -163,8 +164,7 @@ footer{
     Your order will be carefully packed and delivered within 3 days from harvest.
   </p>
   <p>
-    <b>Note:</b> Customers ordering from locations outside and far from Devanahalli are requested
-    to place a minimum order of 5 kg for smooth delivery and secure packaging.
+    <b>Note:</b> Delivery charges apply as per location from the store.
   </p>
 </div>
 
@@ -239,13 +239,18 @@ function removeItem(id){
 function renderCart(){
   const cartItems = document.getElementById("cartItems");
   const totalSpan = document.getElementById("total");
+  const totalKgSpan = document.getElementById("totalKg");
+  const orderBtn = document.getElementById("orderBtn");
+
   cartItems.innerHTML = "";
 
   let total = 0;
+  let totalKg = 0;
 
   cartData.forEach(item=>{
     const amount = item.price * item.qty;
     total += amount;
+    totalKg += item.qty;
 
     cartItems.innerHTML += `
       <li>
@@ -258,6 +263,13 @@ function renderCart(){
   });
 
   totalSpan.innerText = total;
+  totalKgSpan.innerText = totalKg;
+
+  if(totalKg >= 5){
+    orderBtn.disabled = false;
+  } else {
+    orderBtn.disabled = true;
+  }
 }
 
 function orderWhatsApp(){
