@@ -115,17 +115,51 @@ button:disabled{
   margin-bottom:10px;
 }
 
-.instagram-link img{
-  width:18px;
-  vertical-align:middle;
-  margin-right:6px;
+.social-links{
+  margin-top:15px;
 }
 
-.instagram-link a{
-  color:white;
-  text-decoration:none;
+.click-text{
+  font-size:20px;
   font-weight:bold;
-  font-size:16px;
+  color:#fff176;
+  text-shadow:0 0 8px #fff176, 0 0 15px #ffeb3b;
+  animation:pulse 1.5s infinite;
+  margin-bottom:12px;
+}
+
+.social-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,0.15);
+  padding:8px 14px;
+  border-radius:25px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+  margin:5px 0;
+  transition:0.3s;
+}
+
+.social-btn:hover{
+  background:rgba(255,255,255,0.25);
+  transform:scale(1.05);
+}
+
+.social-icon{
+  width:24px !important;
+  height:24px !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  background:none !important;
+  object-fit:contain;
+}
+
+@keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:0.7;}
+  100%{opacity:1;}
 }
 
 footer{
@@ -147,12 +181,23 @@ footer{
   <p>📞 +91 79966 44345 | +91 87926 67976</p>
   <p><b>Charan Kumar T</b> &nbsp; | &nbsp; <b>Charan Yadav D</b></p>
 
-  <p class="instagram-link">
-    <a href="https://instagram.com/shree_mangoes_" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      Follow us on Instagram: @shree_mangoes_
-    </a>
-  </p>
+  <div class="social-links">
+    <p class="click-text">✨ Click Here ✨</p>
+
+    <p>
+      <a href="https://instagram.com/shree_mangoes_" target="_blank" class="social-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
+        @shree_mangoes_
+      </a>
+    </p>
+
+    <p>
+      <a href="https://wa.me/917996644345" target="_blank" class="social-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="social-icon">
+        +91 79966 44345
+      </a>
+    </p>
+  </div>
 </header>
 
 <div class="intro">
@@ -216,7 +261,6 @@ mangoes.forEach(m=>{
       <img src="images/${m.img}">
       <h3>${m.name}</h3>
       <p class="price">₹${m.price} / kg</p>
-
       ${m.stock ? "" : "<p class='out'>Out of Stock</p>"}
 
       <label>Quantity (kg):</label><br>
@@ -244,7 +288,7 @@ function addToCart(id){
 
   if(existing){
     existing.qty += qty;
-  }else{
+  } else {
     cartData.push({id:id,name:mango.name,price:mango.price,qty:qty});
   }
 
@@ -275,16 +319,13 @@ function renderCart(){
     cartItems.innerHTML += `
       <li>
         ${item.name} – ${item.qty} kg – ₹${amount}
-        <button class="removeBtn" onclick="removeItem(${item.id})">
-          Remove
-        </button>
+        <button class="removeBtn" onclick="removeItem(${item.id})">Remove</button>
       </li>
     `;
   });
 
   totalSpan.innerText = total;
   totalKgSpan.innerText = totalKg;
-
   orderBtn.disabled = totalKg < 5;
 }
 
@@ -294,10 +335,7 @@ function orderWhatsApp(){
     return;
   }
 
-  let message =
-    "Hello SHREE Mangoes,%0A%0A" +
-    "I would like to place an order:%0A%0A";
-
+  let message = "Hello SHREE Mangoes,%0A%0AI would like to place an order:%0A%0A";
   let total = 0;
 
   cartData.forEach((item,i)=>{
@@ -306,9 +344,7 @@ function orderWhatsApp(){
     message += `${i+1}. ${item.name} – ${item.qty} kg – ₹${amt}%0A`;
   });
 
-  message +=
-    `%0ATotal Amount: ₹${total}%0A%0A` +
-    "Customer Details:%0AName:%0AAddress:%0APhone:%0A%0AThank you.";
+  message += `%0ATotal Amount: ₹${total}%0A%0ACustomer Details:%0AName:%0AAddress:%0APhone:%0A%0AThank you.`;
 
   window.open("https://wa.me/917996644345?text="+message,"_blank");
 }
