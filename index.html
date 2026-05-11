@@ -115,6 +115,19 @@ button:disabled{
   margin-bottom:10px;
 }
 
+.instagram-link img{
+  width:18px;
+  vertical-align:middle;
+  margin-right:6px;
+}
+
+.instagram-link a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:16px;
+}
+
 footer{
   background:#333;
   color:white;
@@ -133,6 +146,13 @@ footer{
   <p>📍 Devanahalli – 562110</p>
   <p>📞 +91 79966 44345 | +91 87926 67976</p>
   <p><b>Charan Kumar T</b> &nbsp; | &nbsp; <b>Charan Yadav D</b></p>
+
+  <p class="instagram-link">
+    <a href="https://instagram.com/shree_mangoes_" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      Follow us on Instagram: @shree_mangoes_
+    </a>
+  </p>
 </header>
 
 <div class="intro">
@@ -265,11 +285,7 @@ function renderCart(){
   totalSpan.innerText = total;
   totalKgSpan.innerText = totalKg;
 
-  if(totalKg >= 5){
-    orderBtn.disabled = false;
-  } else {
-    orderBtn.disabled = true;
-  }
+  orderBtn.disabled = totalKg < 5;
 }
 
 function orderWhatsApp(){
