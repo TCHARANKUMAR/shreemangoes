@@ -213,11 +213,13 @@ footer{
 
 <div class="cart">
   <h2>Your Cart</h2>
-  <p><b>Minimum Order: 5 kg required to place order</b></p>
+  <p style="color:#2e7d32; font-weight:bold;">
+    🚚 Customers ordering 5 kg or more can enjoy minimal delivery charges.
+  </p>
   <ul id="cartItems"></ul>
   <p><b>Total: ₹<span id="total">0</span></b></p>
   <p><b>Total Quantity: <span id="totalKg">0</span> kg</b></p>
-  <button id="orderBtn" onclick="orderWhatsApp()" disabled>
+  <button id="orderBtn" onclick="orderWhatsApp()">
     Order on WhatsApp
   </button>
 </div>
@@ -250,7 +252,8 @@ const mangoes = [
   {id:8,name:"Neelam",price:100,img:"neelam.jpg",stock:false},
   {id:9,name:"Alphonso",price:130,img:"alphonso.jpg",stock:true},
   {id:10,name:"Kesar",price:100,img:"kesar.jpg",stock:false},
-  {id:11,name:"Nati(for pickes)",price:30,img:"nati.jpg",stock:true}
+  {id:11,name:"Nati(for pickes)",price:30,img:"nati.jpg",stock:true},
+  {id:12,name:"Totapuri",price:40,img:"totapuri.jpg",stock:true}
 ];
 
 const productsDiv = document.getElementById("products");
@@ -304,7 +307,6 @@ function renderCart(){
   const cartItems = document.getElementById("cartItems");
   const totalSpan = document.getElementById("total");
   const totalKgSpan = document.getElementById("totalKg");
-  const orderBtn = document.getElementById("orderBtn");
 
   cartItems.innerHTML = "";
 
@@ -326,7 +328,6 @@ function renderCart(){
 
   totalSpan.innerText = total;
   totalKgSpan.innerText = totalKg;
-  orderBtn.disabled = totalKg < 5;
 }
 
 function orderWhatsApp(){
